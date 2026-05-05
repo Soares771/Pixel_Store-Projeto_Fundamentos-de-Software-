@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Store — Catálogo</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/catalog.css" />
+  <link rel="stylesheet" href="../css/cart.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="nav-logo grad-text">🎮 PIXEL STORE</div>
+
+    <div class="nav-right">
+      <span class="nav-greeting" id="nav-greeting">Olá!</span>
+
+      <!-- Botão do carrinho -->
+      <button id="cart-trigger" class="cart-trigger">
+        🛒 Carrinho
+        <span id="cart-badge" class="cart-badge" style="display:none">0</span>
+      </button>
+
+      <!-- Logout -->
+      <button class="btn-ghost" onclick="Auth.logout()">Sair</button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════
+       CONTEÚDO PRINCIPAL
+  ══════════════════════════════════════════════════════════ -->
+  <main class="catalog-main page-enter">
+
+    <!-- Hero banner -->
+    <div class="hero-banner">
+      <div class="hero-text">
+        <h1>Bem-vindo de volta, <span id="hero-name">Jogador</span>! 🎮</h1>
+        <p>Descubra os melhores jogos e adicione ao seu carrinho.</p>
+      </div>
+      <div class="hero-icon">🕹️</div>
+    </div>
+
+    <!-- Barra de filtros -->
+    <div id="filter-bar" class="filter-bar"></div>
+
+    <!-- Grid de jogos -->
+    <div id="games-grid" class="games-grid"></div>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════
+       CARRINHO — Overlay + Drawer lateral
+  ══════════════════════════════════════════════════════════ -->
+  <div id="cart-overlay" class="cart-overlay"></div>
+
+  <aside id="cart-drawer" class="cart-drawer" role="dialog" aria-label="Carrinho de compras">
+
+    <!-- Header -->
+    <div class="cart-header">
+      <h2>🛒 Meu Carrinho</h2>
+      <button id="cart-close" class="cart-close" aria-label="Fechar carrinho">✕</button>
+    </div>
+
+    <!-- Itens -->
+    <div id="cart-body" class="cart-body"></div>
+
+    <!-- Footer / Checkout -->
+    <div class="cart-footer">
+      <div class="cart-summary" id="cart-summary"></div>
+      <hr class="cart-divider" />
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total — <span id="cart-count">0 itens</span></span>
+        <span class="cart-total-value" id="cart-total">R$ 0,00</span>
+      </div>
+      <button
+        id="checkout-btn"
+        class="btn-primary checkout-btn"
+        onclick="Catalog.checkout()"
+        disabled
+      >
+        FINALIZAR COMPRA
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- Toast global -->
+  <div id="toast"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCRIPTS
+       Ordem de carregamento: dados → serviços → controller
+  ══════════════════════════════════════════════════════════ -->
+  <script src="../js/data/users.js"></script>
+  <script src="../js/data/games.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/catalog.js"></script>
+
+  <script>
+    // ── Proteção de rota ──────────────────────────────────────
+    Auth.requireAuth();
+
+    // ── Preenche nome do usuário na tela ──────────────────────
+    const session = Auth.getSession();
+    const firstName = session.name.split(" ")[0];
+    document.getElementById("nav-greeting").textContent = `Olá, ${session.name}!`;
+    document.getElementById("hero-name").textContent    = firstName;
+
+    // ── Inicializa catálogo ───────────────────────────────────
+    Catalog.init();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+/* ============================================================
+   PIXEL STORE — login.css
+   Estilos exclusivos da tela de autenticação
+   ============================================================ */
+
+/* ── Layout ─────────────────────────────────────────────────── */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Card ────────────────────────────────────────────────────── */
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-xl);
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-glow);
+  backdrop-filter: blur(12px);
+}
+
+/* ── Logo ────────────────────────────────────────────────────── */
+.login-logo {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.login-logo .logo-icon {
+  font-size: 52px;
+  display: block;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-8px); }
+}
+.login-logo .logo-title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.login-logo .logo-subtitle {
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── Formulário ─────────────────────────────────────────────── */
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.form-group input {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 13px 16px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.form-group input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+}
+.form-group input::placeholder { color: var(--text-faint); }
+
+/* ── Botão ───────────────────────────────────────────────────── */
+.login-btn {
+  width: 100%;
+  margin-top: 4px;
+  padding: 14px;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+/* ── Erro ────────────────────────────────────────────────────── */
+.login-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 11px 16px;
+  font-size: 13px;
+  color: #fca5a5;
+  margin-bottom: 16px;
+  display: none;
+}
+.login-error.visible { display: block; }
+
+/* ── Dicas de acesso ────────────────────────────────────────── */
+.login-hint {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-faint);
+  line-height: 1.8;
+  text-align: center;
+}
+.login-hint strong {
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ── Divider decorativo ─────────────────────────────────────── */
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--text-faint);
+  font-size: 12px;
+}
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Botão Registrar ─────────────────────────────────────────── */
+.btn-register {
+  width: 100%;
+  margin-top: 10px;
+  padding: 13px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: transparent;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: var(--radius-md);
+  color: var(--purple);
+  cursor: pointer;
+  transition: border-color .2s, background .2s, color .2s, transform .1s;
+}
+.btn-register:hover {
+  border-color: var(--purple);
+  background: rgba(168, 85, 247, 0.08);
+  color: #c084fc;
+}
+.btn-register:active { transform: scale(.97); }
+
+/* ── Modal Overlay ───────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Modal Card ──────────────────────────────────────────────── */
+.modal-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: var(--radius-xl);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 60px rgba(168, 85, 247, 0.1), 0 24px 48px rgba(0,0,0,.6);
+  transform: translateY(20px);
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-overlay.open .modal-card {
+  transform: translateY(0);
+}
+
+/* ── Modal Header ────────────────────────────────────────────── */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.modal-close {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-faint);
+  font-size: 20px;
+  line-height: 1;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+.modal-close:hover {
+  border-color: rgba(255,255,255,.2);
+  color: var(--text-primary);
+}
