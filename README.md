@@ -79,12 +79,3 @@ Clique com botão direito em index.html → "Open with Live Server".
 
 ---
 
-## 👥 Time de Devs
-
-| Role | Responsabilidade |
-|------|-----------------|
-| Dev1 | Análise e projeto (User Stories, CRC) |
-| Dev2 | Implementação front-end (HTML + CSS) |
-| Dev3 | Testes manuais |
-| Dev4 | Análise e projeto (fluxos, estrutura) |
-| Dev5 | Implementação back-end (JS, dados) |
